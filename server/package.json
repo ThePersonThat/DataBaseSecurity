@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server with data base",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThePersonThat/DateBaseSecurity.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "Alex Haidabrus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThePersonThat/DateBaseSecurity/issues"
+  },
+  "homepage": "https://github.com/ThePersonThat/DateBaseSecurity#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
