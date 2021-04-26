@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13.2-alpine
+    restart: always
+    volumes:
+    - postgres_storage_volume:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=alex
+      - POSTGRES_PASSWORD=root
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+    - 5432:5432
+
+volumes:
+  postgres_storage_volume:
