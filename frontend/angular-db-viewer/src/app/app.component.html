@@ -1,0 +1,37 @@
+<div class="container">
+  <button (click)="getDataFromBackend()" class="button">Get two tables from database</button>
+
+  <div class="table-block" *ngIf="finish">
+
+    <table>
+      <tr>
+        <th>ID Tournament</th>
+        <th>Location</th>
+        <th>Count Stages</th>
+        <th>Name</th>
+      </tr>
+      <tr *ngFor="let tournament of tournaments">
+        <td>{{tournament.id_tournament}}</td>
+        <td>{{tournament.location}}</td>
+        <td>{{tournament.count_stages}}</td>
+        <td>{{tournament.name}}</td>
+      </tr>
+    </table>
+
+    <table class="table-margin">
+      <tr>
+        <th>ID Race</th>
+        <th>ID Tournament</th>
+        <th>Stage of tournament</th>
+        <th>Max rank</th>
+      </tr>
+      <tr *ngFor="let race of races">
+        <td>{{race.id_race}}</td>
+        <td>{{race.id_tournament}}</td>
+        <td>{{race.stage_of_tournament}}</td>
+        <td>{{race.max_rank}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
