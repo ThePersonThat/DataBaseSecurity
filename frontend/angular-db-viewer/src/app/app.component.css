@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding: 50px;
 }
 
 .button {
@@ -13,18 +13,18 @@
 }
 
 table {
-  font-size: 24px;
+  width: 700px;;
+}
+
+.mat-header-cell, .mat-cell {
   text-align: center;
+  font-size: 18px;
 }
 
-table th, td {
-  width: 200px;
+.mat-paginator {
+  font-size: 18px;
 }
 
-table, th, td {
-  border: 1px solid black;
-}
-
-.table-margin {
+.margin-table {
   margin-top: 20px;
 }
