@@ -1,7 +1,7 @@
 <div class="container">
   <button (click)="getDataFromBackend()" class="button">Get two tables from database</button>
 
-  <div class="table-block" *ngIf="finish">
+  <div class="table-block" [hidden]="!finish">
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="tournaments">
@@ -63,9 +63,11 @@
         <tr mat-row *matRowDef="let row; columns: raceColumns;"></tr>
       </table>
 
-      <mat-paginator showFirstLastButtons
+      <mat-paginator
                      [length]="this.raceCount"
-                     [pageSize]="COUNT_PER_PAGE">
+                     [pageSize]="COUNT_PER_PAGE"
+
+                     showFirstLastButtons>
       </mat-paginator>
     </div>
   </div>

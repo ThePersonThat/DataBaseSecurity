@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {DataService} from "./shared/services/data.service";
 import {Race, Tournament} from "./shared/interfaces/Data";
 import {MatTableDataSource} from "@angular/material/table";
@@ -11,6 +11,7 @@ import {MatPaginator} from "@angular/material/paginator";
   providers: [DataService]
 })
 export class AppComponent {
+
   finish = false;
 
   races: MatTableDataSource<Race>;
@@ -30,10 +31,9 @@ export class AppComponent {
   getDataFromBackend(): void {
     this.data.getDataFromTwoTables().subscribe(
       value => {
-        this.races = new MatTableDataSource<Race>(value.races)
+        this.races = new MatTableDataSource<Race>(value.races);
         this.races.paginator = this.racePaginator;
         this.raceCount = value.races.length;
-
 
         this.tournaments = new MatTableDataSource<Tournament>(value.tournaments);
         this.tournaments.paginator = this.tournamentPaginator;
