@@ -17,12 +17,12 @@ export class AppComponent {
   races: MatTableDataSource<Race>;
   raceCount: number;
   raceColumns: string[] = ['id_race', 'id_tournament', 'stage_of_tournament', 'max_rank'];
-  @ViewChild(MatPaginator) racePaginator: MatPaginator;
+  @ViewChild('racePaginator', {static: true}) racePaginator: MatPaginator;
 
   tournaments: MatTableDataSource<Tournament>;
   tournamentCount: number;
   tournamentColumns: string[] = ['id_tournament', 'location', 'count_stages', 'name'];
-  @ViewChild(MatPaginator) tournamentPaginator: MatPaginator;
+  @ViewChild('tournamentPaginator', {static: true}) tournamentPaginator: MatPaginator;
 
   COUNT_PER_PAGE = 5;
 

@@ -30,7 +30,7 @@
         <tr mat-row *matRowDef="let row; columns: tournamentColumns;"></tr>
       </table>
 
-      <mat-paginator showFirstLastButtons
+      <mat-paginator #tournamentPaginator="matPaginator" showFirstLastButtons
                      [length]="this.tournamentCount"
                      [pageSize]="COUNT_PER_PAGE">
       </mat-paginator>
@@ -63,11 +63,9 @@
         <tr mat-row *matRowDef="let row; columns: raceColumns;"></tr>
       </table>
 
-      <mat-paginator
+      <mat-paginator #racePaginator="matPaginator" showFirstLastButtons
                      [length]="this.raceCount"
-                     [pageSize]="COUNT_PER_PAGE"
-
-                     showFirstLastButtons>
+                     [pageSize]="COUNT_PER_PAGE">
       </mat-paginator>
     </div>
   </div>
