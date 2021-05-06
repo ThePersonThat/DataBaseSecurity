@@ -32,7 +32,7 @@
 
       <mat-paginator #tournamentPaginator="matPaginator" showFirstLastButtons
                      [length]="this.tournamentCount"
-                     [pageSize]="COUNT_PER_PAGE">
+                     [pageSize]="5">
       </mat-paginator>
     </div>
 
@@ -64,8 +64,9 @@
       </table>
 
       <mat-paginator #racePaginator="matPaginator" showFirstLastButtons
-                     [length]="this.raceCount"
-                     [pageSize]="COUNT_PER_PAGE">
+                     [length]="raceCount"
+                     [pageSize]="pageSize"
+                     (page)="onPaginate()">
       </mat-paginator>
     </div>
   </div>

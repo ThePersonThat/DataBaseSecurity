@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DataService} from "./shared/services/data.service";
 import {Race, Tournament} from "./shared/interfaces/Data";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./app.component.css'],
   providers: [DataService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   finish = false;
+  pageSize: number;
 
   races: MatTableDataSource<Race>;
   raceCount: number;
@@ -24,20 +26,31 @@ export class AppComponent {
   tournamentColumns: string[] = ['id_tournament', 'location', 'count_stages', 'name'];
   @ViewChild('tournamentPaginator', {static: true}) tournamentPaginator: MatPaginator;
 
-  COUNT_PER_PAGE = 5;
+  constructor(private data: DataService, private route: ActivatedRoute) {
+  }
 
-  constructor(private data: DataService) {}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      value => this.pageSize = +value['pagesize'] || 5
+    )
+  }
+
+  onPaginate(): void {
+    this.getDataFromBackend();
+  }
 
   getDataFromBackend(): void {
-    this.data.getDataFromTwoTables().subscribe(
+    this.data.getDataFromTwoTables({
+        limit: this.racePaginator.pageSize,
+        offset: this.racePaginator.pageIndex * this.racePaginator.pageSize
+      }
+    ).subscribe(
       value => {
         this.races = new MatTableDataSource<Race>(value.races);
-        this.races.paginator = this.racePaginator;
-        this.raceCount = value.races.length;
+        this.raceCount = value.raceCount;
 
         this.tournaments = new MatTableDataSource<Tournament>(value.tournaments);
-        this.tournaments.paginator = this.tournamentPaginator;
-        this.tournamentCount = value.tournaments.length;
+        this.tournamentCount = value.tournamentCount;
 
         this.finish = true;
       }

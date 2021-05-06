@@ -14,5 +14,12 @@ export interface Race {
 
 export interface DataResponse {
   tournaments: Tournament[];
+  tournamentCount: number;
   races: Race[];
+  raceCount: number;
+}
+
+export interface Pagination {
+  offset: number;
+  limit: number;
 }
