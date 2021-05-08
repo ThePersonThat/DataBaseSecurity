@@ -1,6 +1,7 @@
 const pg = require('pg');
-const postgresURI = 'postgresql://alex:root@localhost:5432/test';
-const client = new pg.Client(postgresURI);
+const config = require('../config/config')
+const client = new pg.Client(config.postgresURI);
+
 client.connect()
     .then(
         () => console.log('Connected to database')

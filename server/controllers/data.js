@@ -4,10 +4,10 @@ module.exports.getData = async (req, res) => {
     const limit = req.query.pagesize;
     const offset = req.query.offset;
 
-    const tournament = await pgClient.query('SELECT * FROM TOURNAMENT OFFSET ' + offset + ' LIMIT ' + limit);
+    const tournament = await pgClient.query('SELECT * FROM TOURNAMENT');
     const tournamentCount = await pgClient.query('SELECT COUNT(*) FROM TOURNAMENT');
 
-    const race = await pgClient.query('SELECT * FROM RACE OFFSET ' + offset + ' LIMIT ' + limit);
+    const race = await pgClient.query('SELECT * FROM RACE OFFSET $1 LIMIT $2', [offset, limit]);
     const raceCount = await pgClient.query('SELECT COUNT(*) FROM RACE');
 
     const response = {

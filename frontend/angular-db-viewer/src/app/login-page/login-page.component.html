@@ -1,0 +1,26 @@
+<form class="login-form" [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Enter your login</mat-label>
+    <input matInput placeholder="Your login" formControlName="login">
+    <mat-hint class="error-font" *ngIf="form.get('login').invalid && form.get('login').touched">
+      <span *ngIf="form.get('login').errors['required']">
+        This field should not be empty
+      </span>
+    </mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input type="password" matInput placeholder="Your password" formControlName="password">
+    <mat-hint class="error-font" *ngIf="form.get('password').invalid && form.get('password').touched">
+      <span *ngIf="form.get('password').errors['required']">
+        This field should not be empty
+      </span>
+    </mat-hint>
+  </mat-form-field>
+
+  <div class="error-font">{{error}}</div>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Login</button>
+</form>
