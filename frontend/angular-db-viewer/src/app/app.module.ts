@@ -15,13 +15,19 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
+import { HeaderNotAuthLayoutComponent } from './shared/layouts/header-not-auth-layout/header-not-auth-layout.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { ChangePasswordPageComponent } from './change-password-page/change-password-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataPageComponent,
     NotFoundPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    HeaderNotAuthLayoutComponent,
+    RegisterPageComponent,
+    ChangePasswordPageComponent
   ],
   imports: [
     BrowserModule,

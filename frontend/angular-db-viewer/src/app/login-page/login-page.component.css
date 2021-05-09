@@ -1,12 +1,11 @@
-.login-form {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.forgot-password {
+  text-decoration: none;
+  align-self: flex-start;
+  padding-bottom: 10px;
+  color: blue;
+  transition: 0.5s;
 }
 
-.error-font {
-  color: red;
+.forgot-password:hover {
+  color: purple;
 }

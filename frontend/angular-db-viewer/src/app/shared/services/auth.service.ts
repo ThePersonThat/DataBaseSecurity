@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AuthResponse, User} from "../interfaces/Auth";
+import {AuthResponse, ChangePassword, User} from "../interfaces/Auth";
 import {API_HOST} from "../interfaces/Http";
-import {catchError, map, mapTo, tap} from "rxjs/operators";
-import {Observable, of} from "rxjs";
+import {tap} from "rxjs/operators";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -15,11 +15,18 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(user: User): Observable<boolean> {
+  login(user: User): Observable<any> {
     return this.http.post<AuthResponse>(API_HOST + 'login', user).pipe(
-      tap(response => this.createSession(response)),
-      mapTo(true)
+      tap(response => this.createSession(response))
     );
+  }
+
+  register(user: User): Observable<any> {
+    return this.http.post(API_HOST + 'register', user);
+  }
+
+  changePassword(changeData: ChangePassword): Observable<any> {
+    return this.http.post(API_HOST + 'change', changeData);
   }
 
   getJwtToken(): string {
@@ -32,7 +39,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.JWT_TOKEN);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   private createSession(response: AuthResponse): void {

@@ -20,11 +20,9 @@
     </mat-hint>
   </mat-form-field>
 
-  <a class="forgot-password" routerLink="/auth/change/">Forgot password?</a>
-
   <mat-hint class="error" *ngIf="error">
     <span>{{error}}</span>
   </mat-hint>
 
-  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Login</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Register</button>
 </form>

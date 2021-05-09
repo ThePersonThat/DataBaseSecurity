@@ -4,11 +4,11 @@ import {AuthService} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-change-password-page',
+  templateUrl: './change-password-page.component.html',
+  styleUrls: ['./change-password-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class ChangePasswordPageComponent implements OnInit {
 
   form: FormGroup;
   error: string;
@@ -19,12 +19,13 @@ export class LoginPageComponent implements OnInit {
     this.form = new FormGroup({
       login: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required]),
-    })
+      newPassword: new FormControl(null, [Validators.required])
+    });
   }
 
   submit(): void {
-    this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/data']),
+    this.auth.changePassword(this.form.value).subscribe(
+      () => this.router.navigate(['/login']),
       error => this.error = error.error.message
     );
   }

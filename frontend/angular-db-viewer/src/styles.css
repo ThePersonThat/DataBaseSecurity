@@ -6,3 +6,17 @@ button {
   font-size: 18px;
   margin-top: 5px;
 }
+
+mat-hint span {
+  color: red;
+}
+
+.error {
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

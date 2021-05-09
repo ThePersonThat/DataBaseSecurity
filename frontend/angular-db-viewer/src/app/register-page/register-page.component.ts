@@ -4,11 +4,11 @@ import {AuthService} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-register-page',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['./register-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit {
 
   form: FormGroup;
   error: string;
@@ -23,8 +23,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit(): void {
-    this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/data']),
+    this.auth.register(this.form.value).subscribe(
+      () => this.router.navigate(['/auth/login']),
       error => this.error = error.error.message
     );
   }
