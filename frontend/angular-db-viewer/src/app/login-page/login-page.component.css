@@ -1,0 +1,11 @@
+.forgot-password {
+  text-decoration: none;
+  align-self: flex-start;
+  padding-bottom: 10px;
+  color: blue;
+  transition: 0.5s;
+}
+
+.forgot-password:hover {
+  color: purple;
+}

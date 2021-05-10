@@ -1,0 +1,29 @@
+.data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+table {
+  width: 700px;;
+}
+
+.mat-header-cell, .mat-cell {
+  text-align: center;
+  font-size: 18px;
+}
+
+.mat-paginator {
+  font-size: 18px;
+}
+
+.margin-table {
+  margin-top: 20px;
+}
+
+.icon {
+  cursor: pointer;
+  padding: 0 5px;
+}

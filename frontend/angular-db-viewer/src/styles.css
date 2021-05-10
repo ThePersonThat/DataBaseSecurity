@@ -1,0 +1,32 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button {
+  width: 150px;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+mat-hint span {
+  color: red;
+}
+
+.error {
+  margin-bottom: 10px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

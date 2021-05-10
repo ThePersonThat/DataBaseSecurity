@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: db-frontend
+    build: ./frontend
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - database-network
+    ports:
+      - 8080:80
+  backend:
+    container_name: db-backend
+    build: ./backend
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - database-network
+    ports:
+      - 5000:5000
+  postgres:
+    container_name: db-postgres
+    hostname: postgress
+    image: postgres:13.2-alpine
+    restart: always
+    networks:
+      - database-network
+    volumes:
+      - postgres_storage_volume:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=alex
+      - POSTGRES_PASSWORD=root
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_storage_volume:
+networks:
+  database-network:
+    driver: bridge
