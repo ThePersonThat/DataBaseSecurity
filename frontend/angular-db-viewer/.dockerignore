@@ -1,0 +1,24 @@
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# build
+dist
+
+# dependencies
+node_modules
+
+# git
+.gitignore
+.git
+
+# misc
+.editconfig
+npm-debug.log
+tslint.json
+README.md
