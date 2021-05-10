@@ -23,3 +23,13 @@ export interface Pagination {
   offset: number;
   limit: number;
 }
+
+export interface Data {
+  name: string;
+  value: string
+}
+
+export interface Store {
+  element: Data[];
+  table: string;
+}

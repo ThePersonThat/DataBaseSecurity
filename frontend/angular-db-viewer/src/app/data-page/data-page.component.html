@@ -1,4 +1,4 @@
-<div class="container">
+<div class="data-container">
   <button mat-button (click)="logout()">Logout</button>
   <button (click)="getDataFromBackend()" class="button">Get two tables from database</button>
 
@@ -25,6 +25,14 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let tournament">{{tournament.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon class="icon" (click)="edit(element, 'Tournament')">edit</mat-icon>
+            <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="tournamentColumns"></tr>
@@ -58,6 +66,14 @@
         <ng-container matColumnDef="max_rank">
           <th mat-header-cell *matHeaderCellDef>Max rank</th>
           <td mat-cell *matCellDef="let race">{{race.max_rank}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon class="icon" (click)="edit(element, 'Race')">edit</mat-icon>
+            <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="raceColumns"></tr>

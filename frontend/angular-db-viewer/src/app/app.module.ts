@@ -18,6 +18,8 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
 import { HeaderNotAuthLayoutComponent } from './shared/layouts/header-not-auth-layout/header-not-auth-layout.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { ChangePasswordPageComponent } from './change-password-page/change-password-page.component';
+import {MatIconModule} from "@angular/material/icon";
+import { ChangeDataPageComponent } from './change-data-page/change-data-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ChangePasswordPageComponent } from './change-password-page/change-passw
     LoginPageComponent,
     HeaderNotAuthLayoutComponent,
     RegisterPageComponent,
-    ChangePasswordPageComponent
+    ChangePasswordPageComponent,
+    ChangeDataPageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { ChangePasswordPageComponent } from './change-password-page/change-passw
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     {

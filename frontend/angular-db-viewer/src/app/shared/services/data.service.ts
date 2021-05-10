@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {DataResponse, Pagination} from "../interfaces/Data";
+import {DataResponse, Pagination, Store} from "../interfaces/Data";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {API_HOST} from "../interfaces/Http";
 
@@ -17,5 +17,9 @@ export class DataService {
     params = params.append('pagesize', pagination.limit.toString());
 
     return this.http.get<DataResponse>(API_HOST + 'data', {params: params});
+  }
+
+  update(updateDate: any) {
+    return this.http.post(API_HOST + 'update', updateDate);
   }
 }

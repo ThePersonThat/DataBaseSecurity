@@ -19,3 +19,31 @@ module.exports.getData = async (req, res) => {
 
     res.status(200).json(response);
 }
+
+module.exports.update = async (req, res) => {
+    try {
+        let data = [];
+        let query = `UPDATE ${req.body.table} SET`;
+        let index = 1;
+
+        for (let element of req.body.element) {
+            data.push(element.value);
+            query += ` ${element.name} = $${index},`;
+            index++;
+        }
+
+        data.push(req.body.id.value);
+        query = query.slice(0, -1);
+        query += ` WHERE ${req.body.id.name} = $${index}`;
+
+        await pgClient.query(query, [...data]);
+
+        res.status(200).json({
+            message: 'ok'
+        });
+    } catch (e) {
+        res.status(409).json({
+            message: e.message
+        })
+    }
+}
