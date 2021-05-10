@@ -47,3 +47,43 @@ module.exports.update = async (req, res) => {
         })
     }
 }
+
+module.exports.delete = async (req, res) => {
+    try {
+        let query = `DELETE FROM ${req.body.table} WHERE ${req.body.element[0].name} = $1`;
+
+        await pgClient.query(query, [req.body.element[0].value]);
+
+        res.status(200).json({
+            message: 'ok'
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+module.exports.insert = async (req, res) => {
+    try {
+        let data = [];
+        let query = `INSERT INTO ${req.body.table} VALUES(`;
+        let index = 1;
+
+        for (let element of req.body.element) {
+            data.push(element.value);
+            query += `$${index},`;
+            index++;
+        }
+
+        query = query.replace(/.$/,")");
+
+        await pgClient.query(query, [...data]);
+
+        res.status(200).json({
+            message: 'ok'
+        });
+    } catch (e) {
+        res.status(409).json({
+            message: e.message
+        });
+    }
+}

@@ -15,7 +15,10 @@ export class StoreService {
   }
 
   get(): Store {
-    return this.store;
+    const store = this.store;
+    this.store = null;
+
+    return store;
   }
 
   isExist(): boolean {

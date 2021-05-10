@@ -7,6 +7,8 @@ const router = express.Router();
 router.get('/data', passport.authenticate('jwt', {session: false}), dataController.getData);
 router.post('/update', passport.authenticate('jwt', {session: false}), dataController.update);
 router.post('/delete', passport.authenticate('jwt', {session: false}), dataController.delete);
+router.post('/insert', passport.authenticate('jwt', {session: false}), dataController.insert);
+
 router.post('/login', authController.login);
 router.post('/register', authController.register);
 router.post('/change', authController.changePassword);

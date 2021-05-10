@@ -1,6 +1,5 @@
 <div class="data-container">
   <button mat-button (click)="logout()">Logout</button>
-  <button (click)="getDataFromBackend()" class="button">Get two tables from database</button>
 
   <div class="table-block" [hidden]="!finish">
 
@@ -31,8 +30,20 @@
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
             <mat-icon class="icon" (click)="edit(element, 'Tournament')">edit</mat-icon>
-            <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+            <mat-icon class="icon" (click)="delete(element, 'Tournament')">delete</mat-icon>
           </td>
+        </ng-container>
+
+        <ng-container matColumnDef="insert">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon style="cursor: pointer" (click)="insert({
+            id_tournament: 0,
+            location: '',
+            count_stages: 0,
+            name: ''
+            },'Tournament')">add</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let element"></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="tournamentColumns"></tr>
@@ -72,8 +83,20 @@
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element">
             <mat-icon class="icon" (click)="edit(element, 'Race')">edit</mat-icon>
-            <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+            <mat-icon class="icon" (click)="delete(element, 'Race')">delete</mat-icon>
           </td>
+        </ng-container>
+
+        <ng-container matColumnDef="insert">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon style="cursor: pointer" (click)="insert({
+            id_race: 0,
+            id_tournament: 0,
+            stage_of_tournament: 0,
+            max_rank: 0
+            },'Race')">add</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let element"></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="raceColumns"></tr>

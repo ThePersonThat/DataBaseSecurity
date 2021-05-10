@@ -11,6 +11,7 @@ import {RegisterPageComponent} from "../register-page/register-page.component";
 import {ChangePasswordPageComponent} from "../change-password-page/change-password-page.component";
 import {ChangeDataPageComponent} from "../change-data-page/change-data-page.component";
 import {ModifyGuard} from "../shared/guards/modify.guard";
+import {InsertPageComponent} from "../insert-page/insert-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/auth/login', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   },
   {path: 'data', canActivate: [AuthGuard], component: DataPageComponent},
   {path: 'change-data', canActivate: [AuthGuard, ModifyGuard], component: ChangeDataPageComponent},
+  {path: 'insert', canActivate: [AuthGuard, ModifyGuard], component: InsertPageComponent},
   {path: '**', component: NotFoundPageComponent}
 ];
 

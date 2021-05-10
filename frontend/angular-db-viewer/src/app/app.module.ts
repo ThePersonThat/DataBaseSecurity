@@ -20,6 +20,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { ChangePasswordPageComponent } from './change-password-page/change-password-page.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ChangeDataPageComponent } from './change-data-page/change-data-page.component';
+import { InsertPageComponent } from './insert-page/insert-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChangeDataPageComponent } from './change-data-page/change-data-page.com
     HeaderNotAuthLayoutComponent,
     RegisterPageComponent,
     ChangePasswordPageComponent,
-    ChangeDataPageComponent
+    ChangeDataPageComponent,
+    InsertPageComponent
   ],
   imports: [
     BrowserModule,

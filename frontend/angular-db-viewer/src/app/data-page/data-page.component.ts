@@ -6,7 +6,6 @@ import {DataService} from "../shared/services/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../shared/services/auth.service";
 import {StoreService} from "../shared/services/store.service";
-import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-data',
@@ -20,12 +19,12 @@ export class DataPageComponent implements OnInit {
 
   races: MatTableDataSource<Race>;
   raceCount: number;
-  raceColumns: string[] = ['id_race', 'id_tournament', 'stage_of_tournament', 'max_rank', 'actions'];
+  raceColumns: string[] = ['id_race', 'id_tournament', 'stage_of_tournament', 'max_rank', 'actions', 'insert'];
   @ViewChild('racePaginator', {static: true}) racePaginator: MatPaginator;
 
   tournaments: MatTableDataSource<Tournament>;
   tournamentCount: number;
-  tournamentColumns: string[] = ['id_tournament', 'location', 'count_stages', 'name', 'actions'];
+  tournamentColumns: string[] = ['id_tournament', 'location', 'count_stages', 'name', 'actions', 'insert'];
   @ViewChild('tournamentPaginator', {static: true}) tournamentPaginator: MatPaginator;
 
   constructor(private data: DataService,
@@ -36,31 +35,42 @@ export class DataPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(
-      value => this.pageSize = +value['pagesize'] || 5
-    )
+      value => {
+        this.pageSize = +value['pagesize'] || 5;
+        this.racePaginator.pageSize = this.pageSize;
+        this.getDataFromBackend();
+      }
+    );
   }
 
   edit(element: any, table: string): void {
-
-    let data: Data[] = [];
-
-    for (let key in element) {
-      data.push({
-        name: key,
-        value: element[key]
-      });
-    }
-
     this.store.set({
-      element: data,
+      element: this.objectToArrayData(element),
       table: table
     });
 
     this.router.navigate(['/change-data']);
   }
 
-  delete(): void {
-    console.log('delete');
+  delete(element: any, table: string): void {
+    const data = this.objectToArrayData(element);
+
+    this.data.delete({
+      element: data.slice(0, 1),
+      table: table
+    })
+      .subscribe(
+      () => this.getDataFromBackend()
+    );
+  }
+
+  insert(element: any, table: string): void {
+    this.store.set({
+      element: this.objectToArrayData(element),
+      table: table
+    });
+
+    this.router.navigate(['/insert']);
   }
 
   logout(): void {
@@ -87,5 +97,18 @@ export class DataPageComponent implements OnInit {
         this.finish = true;
       }
     )
+  }
+
+  private objectToArrayData(element: any): Data[] {
+    let data: Data[] = [];
+
+    for (let key in element) {
+      data.push({
+        name: key,
+        value: element[key]
+      });
+    }
+
+    return data;
   }
 }

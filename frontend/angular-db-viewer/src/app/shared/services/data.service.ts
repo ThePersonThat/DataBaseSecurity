@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {DataResponse, Pagination, Store} from "../interfaces/Data";
+import {DataResponse, Pagination} from "../interfaces/Data";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {API_HOST} from "../interfaces/Http";
 
@@ -19,7 +19,15 @@ export class DataService {
     return this.http.get<DataResponse>(API_HOST + 'data', {params: params});
   }
 
-  update(updateDate: any) {
+  update(updateDate: any): Observable<any> {
     return this.http.post(API_HOST + 'update', updateDate);
+  }
+
+  delete(deleted: any): Observable<any> {
+    return this.http.post(API_HOST + 'delete', deleted);
+  }
+
+  insert(inserted: any): Observable<any> {
+    return this.http.post(API_HOST + 'insert', inserted);
   }
 }
